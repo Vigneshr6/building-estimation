@@ -1,6 +1,13 @@
-import { IonCheckbox, IonContent, IonFooter, IonHeader, IonInput, IonItem, IonItemDivider, IonLabel, IonList, IonListHeader, IonPage, IonRadio, IonSelect, IonSelectOption, IonTitle, IonToolbar } from "@ionic/react";
+import { IonContent, IonFooter, IonHeader, IonInput, IonItem, IonItemDivider, IonLabel, IonList, IonListHeader, IonPage, IonRadio, IonTitle, IonToolbar } from "@ionic/react";
 import React, { useState } from "react";
-import {getRBCMethodCost} from "./service/CivilWorkService";
+import { getRBCMethodCost } from "./service/CivilWorkService";
+import FormControl from '@material-ui/core/FormControl';
+import FormGroup from '@material-ui/core/FormGroup';
+import FormControlLabel from '@material-ui/core/FormControlLabel';
+import InputLabel from '@material-ui/core/InputLabel';
+import MenuItem from '@material-ui/core/MenuItem';
+import Select from '@material-ui/core/Select';
+import Checkbox from '@material-ui/core/Checkbox';
 
 const MyContent: React.FC = () => {
     const [area, setArea] = useState<number>(0);
@@ -24,48 +31,59 @@ const MyContent: React.FC = () => {
                     </IonItem>
                     <IonItem>
                         <IonLabel>Civil work of building</IonLabel>
-                        <IonSelect value={civilWork} placeholder="Select One" onIonChange={e => setCivilWork(e.detail.value!)}>
-                            <IonSelectOption value="redClayBrick">Red Clay Brick</IonSelectOption>
-                            <IonSelectOption value="solidBlock">Solid Block</IonSelectOption>
-                            <IonSelectOption value="aerogon">Aerogon</IonSelectOption>
-                        </IonSelect>
+                        <FormControl>
+                            <Select
+                                value={civilWork}
+                                onChange={e => setCivilWork(e.target.value as string)}
+                            >
+                                <MenuItem value="redClayBrick">Red Clay Brick</MenuItem>
+                                <MenuItem value="solidBlock">Solid Block</MenuItem>
+                                <MenuItem value="aerogon">Aerogon</MenuItem>
+                            </Select>
+                        </FormControl>
                     </IonItem>
                     <IonItem>
                         <IonLabel>Flooring</IonLabel>
-                        <IonSelect value={flooring} placeholder="Select One" onIonChange={e => setFlooring(e.detail.value!)}>
-                            <IonSelectOption value="tiles">Tiles</IonSelectOption>
-                            <IonSelectOption value="graniteMarble">Granite/Marble</IonSelectOption>
-                        </IonSelect>
+                        <FormControl>
+                            <Select value={flooring} placeholder="Select One" onChange={e => setFlooring(e.target.value as string)}>
+                                <MenuItem value="tiles">Tiles</MenuItem>
+                                <MenuItem value="graniteMarble">Granite/Marble</MenuItem>
+                            </Select>
+                        </FormControl>
                     </IonItem>
                     <IonItem>
-                        <IonLabel>Grill work</IonLabel>
-                        <IonCheckbox slot="end" onIonChange={e => setGrillWork(e.detail.checked)} />
+                        <FormControl>
+                            <FormGroup>
+                                <FormControlLabel
+                                    control={<Checkbox slot="end" onChange={e => setGrillWork(e.target.checked)} />} label="Grill work" labelPlacement="start"/>
+                            </FormGroup>
+                        </FormControl>
                     </IonItem>
                     <IonItem>
                         <IonLabel>Plumbing</IonLabel>
-                        <IonCheckbox slot="end" onIonChange={e => setPlumbing(e.detail.checked)} />
+                        <Checkbox slot="end" onChange={e => setPlumbing(e.target.checked)} />
                     </IonItem>
                     <IonItem>
                         <IonLabel>Kitchen Stage & Wall DADO</IonLabel>
-                        <IonCheckbox slot="end" onIonChange={e => setkitchenWall(e.detail.checked)} />
+                        <Checkbox slot="end" onChange={e => setkitchenWall(e.target.checked)} />
                     </IonItem>
                     <IonItem>
                         <IonLabel>Electrical</IonLabel>
-                        <IonCheckbox slot="end" onIonChange={e => setElectrical(e.detail.checked)} />
+                        <Checkbox slot="end" onChange={e => setElectrical(e.target.checked)} />
                     </IonItem>
                     <IonItem>
                         <IonLabel>Joinery</IonLabel>
-                        <IonCheckbox slot="end" onIonChange={e => setJoinery(e.detail.checked)} />
+                        <Checkbox slot="end" onChange={e => setJoinery(e.target.checked)} />
                     </IonItem>
                     {joinery ? (
                         <IonItem>
                             <IonLabel>UPVC/Alluminium window</IonLabel>
-                            <IonCheckbox slot="end" onIonChange={e => setUpvc(e.detail.checked)} />
+                            <Checkbox slot="end" onChange={e => setUpvc(e.target.checked)} />
                         </IonItem>
                     ) : ""}
                     <IonItem>
                         <IonLabel>Painting</IonLabel>
-                        <IonCheckbox slot="end" onIonChange={e => setPainting(e.detail.checked)} />
+                        <Checkbox slot="end" onChange={e => setPainting(e.target.checked)} />
                     </IonItem>
                 </IonList>
             </IonContent>
