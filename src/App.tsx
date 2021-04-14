@@ -37,17 +37,20 @@ import '@ionic/react/css/display.css';
 /* Theme variables */
 // import './theme/variables.css';
 
-const App: React.FC = () => (
-  <IonApp>
-    <IonHeader>
-      <IonToolbar>
-        <IonTitle>Construction Calcy</IonTitle>
-      </IonToolbar>
-    </IonHeader>
-    <IonContent>
-      <MyContent></MyContent>
-    </IonContent>
-  </IonApp>
-);
+const App: React.FC = () => {
+  const title = 'Cost Estimator';
+  return (
+    <IonApp>
+      <IonHeader>
+        <IonToolbar>
+          <IonTitle>{title}</IonTitle>
+        </IonToolbar>
+      </IonHeader>
+      <IonContent>
+        <MyContent></MyContent>
+      </IonContent>
+    </IonApp>
+  );
+};
 
 export default App;
